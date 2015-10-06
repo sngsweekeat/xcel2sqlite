@@ -43,6 +43,7 @@ router.post('/', upload.single('excelFile'), function(req, res, next) {
 					var worksheet = workbook.Sheets[worksheetNames[i]];
 					console.log('Processing worksheet ' + worksheetNames[i]);
 					var colNames = getColumnNamesFromSheet(worksheet);
+					if (colNames.length == 0) continue;
 					// Create table for worksheet
 					createTableInDb(db, worksheetNames[i], colNames);
 					var row = 2, col = 1;
@@ -72,12 +73,12 @@ router.post('/', upload.single('excelFile'), function(req, res, next) {
 module.exports = router;
 
 function sanitize(s) {
-	return s.replace(/;/, ''); // strip semi-colons
+	return s.replace(/;/g, ''); // strip semi-colons
 }
 
 // Strip semi-colons, replace '.' with '_'
 function sanitizeTableOrColumnNames(s) {
-	return s.replace(/;/, '').replace(/\./, '_');
+	return s.replace(/;/g, '').replace(/[\.\s]/g, '_');
 }
 
 function hasExcelExtension(req, file, callback) {
