@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<div class="container"><div class="row"><div class="col-md-8 col-md-offset-2 content">
+	    <h1><%= title %></h1>
+	    <p>For converting MS Excel file to SQLite database file. Note:</p>
+	    <ul>
+	    	<li>Sheet names are used as table names</li>
+	    	<li>First row of the sheet is assumed to contain column names</li>
+	    	<li>Processing of sheet data stops upon encountering an empty row</li>
+	    </ul>
+	    <form method="post" action="/upload" enctype="multipart/form-data">
+	    	<div class="form-group">
+	    		<label for="excelFile">Excel File</label>
+	    		<input type="file" class="form-control" id="excelFile" name="excelFile" />
+	    	</div>
+	    	<div class="g-recaptcha" data-sitekey="6LdCJg4TAAAAAD_G6krSZVnvE4GcTkH5e4BXj5fH"></div>
+	    	<button type="submit" class="btn btn-primary">Convert to SQLite!</button>
+	    </form>
+	    <p />
+  	</div></div></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
