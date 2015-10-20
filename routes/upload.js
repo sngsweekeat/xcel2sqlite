@@ -128,7 +128,7 @@ function getExcelDataRow(sheet, row, numCols) {
 		var val = excelValueAtCellInSheet(sheet, excelAddressForCell(row, col));
 		if (!val)
 			val = '';
-		rowVals[col - 1] = val;
+		rowVals[col - 1] = '' + val;
 	}
 	return rowVals;
 }
