@@ -145,18 +145,25 @@ function isBlankRow(rowData) {
 }
 
 function insertDataIntoTableOfDb(db, tableName, columns, vals) {
-	var command = "INSERT INTO :tableName VALUES (:values)";
+	var command = "INSERT INTO :tableName (:columns) VALUES (:values)";
 	command = command.replace(/:tableName/g, sanitizeTableOrColumnNames(tableName));
 	var valPlaceHolders = '';
+	var columnNames = '';
 	for (var i = 0; i < columns.length; i++) {
-		valPlaceHolders += ':val' + i;
-		if (i != (columns.length - 1))
-			valPlaceHolders += ',';
+		if (vals[i].length > 0) {
+			if (valPlaceHolders.length > 0) valPlaceHolders += ',';
+			if (columnNames.length > 0) columnNames += ',';
+			valPlaceHolders += ':val' + i;
+			columnNames += columns[i];
+		}
 	}
 	command = command.replace(/:values/g, valPlaceHolders);
+	command = command.replace(/:columns/g, columnNames);
 	var values = {};
 	for (var i = 0; i < columns.length; i++) {
-		values[':val' + i] = vals[i];
+		if (vals[i].length > 0) {
+			values[':val' + i] = vals[i];
+		}
 	}
 	console.log(command);
 	db.run(command, values);
