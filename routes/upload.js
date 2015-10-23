@@ -65,7 +65,7 @@ router.post('/', upload.single('excelFile'), function(req, res, next) {
 				res.send('No valid upload received. Only .XLS/.XLSX files up to 400KB are accepted.');
 			}
 		} else {
-			res.send('Error: Are you a robot?');ls -l /tmp
+			res.send('Error: Are you a robot?');
 		}
 	});
 });
