@@ -8,4 +8,21 @@ A web-based service to convert MS Excel files into SQLite database files.
 * Subsequent rows in the sheet will be assumed to contain row data, and inserted as into the output table
 * Row data will be inserted as TEXT
 * Processing of row data stops when an empty row is encountered
- 
+* Generated SQLite files are placed in `/tmp`
+
+Setup
+---
+
+* `./bin/www` to launch
+* Uses `PORT` env var, or defaults to 3000 if no such env var
+
+Suggested TODOs
+---
+
+* Better error handling, e.g.
+  * Stop crashing when uploaded file's header row contains invalid chars (for SQLite column names), or any other errors, for that matter
+  * nicer error pages (e.g. when uploading wrong file type)
+* Refactoring
+* Unit tests
+* More robust data sanitizing
+* Use prepared statements, instead of crappy string replace
