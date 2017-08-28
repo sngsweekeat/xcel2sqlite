@@ -25,4 +25,6 @@ Suggested TODOs
 * Refactoring
 * Unit tests
 * More robust data sanitizing
+* 'Intelligent' handling of column types; e.g. if a column looks like it contains numbers, then create the table column accordingly
+* Deal with header row containing invalid chars (for SQLite column names), e.g. by doing sensible char replacements
 * Use prepared statements, instead of crappy string replace
